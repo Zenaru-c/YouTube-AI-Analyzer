@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% block title %}DeepTube AI Analysis{% endblock %}
+
+{% block content %}
+<div class="background">
+    <!-- Particles animation container -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main content container centered on the page -->
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="glass-ai-box p-5 rounded">
+            <!-- AI analysis header section -->
+            <div class="ai-header mb-4 text-center">
+                <h2 class="neon-text"><i class="bi bi-cpu"></i> Video Analysis Interface</h2>
+                <p class="glow-subtext">Enter YouTube URL to begin neural processing</p>
+            </div>
+
+            <!-- Form for submitting YouTube URL for analysis -->
+            <form method="POST">
+                <div class="nebula-input mb-4">
+                    <input type="text" class="cosmic-input"
+                           id="youtube_url" name="youtube_url"
+                           placeholder="Paste YouTube URL here" required>
+                    <i class="bi bi-link-45deg input-icon"></i>
+                </div>
+
+                <!-- Submit button to initiate AI analysis -->
+                <button type="submit" class="btn btn-primary starlight-btn w-100">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Initiate Analysis
+                </button>
+            </form>
+
+            <!-- Display AI response if available -->
+            {% if ai_response %}
+            <div class="ai-results mt-5">
+                <!-- Header for the results -->
+                <div class="results-header mb-3">
+                    <h3 class="neon-text"><i class="bi bi-robot"></i> Neural Network Output</h3>
+                    <p class="glow-subtext">Analysis completed at {{ now }}</p>
+                </div>
+
+                <!-- AI results content -->
+                <div class="results-content cosmic-output">
+                    <div class="response-text">
+                        <!-- Display AI response, trim extra spaces and ensure it's safe HTML -->
+                        {{ ai_response | trim | replace('\n', ' ') | safe }}
+                    </div>
+
+                    <!-- Processing animation while waiting for AI results -->
+                    <div class="processing-animation">
+                        <div class="pulse-dot"></div>
+                        <div class="pulse-dot"></div>
+                        <div class="pulse-dot"></div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Button to navigate back to the welcome page -->
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-primary starlight-btn w-100" onclick="window.location.href='/welcome'">
+                    <i class="bi bi-arrow-left-circle"></i> Back
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Loader animation displayed when processing is happening -->
+<div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+{% endblock %}

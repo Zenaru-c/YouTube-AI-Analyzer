@@ -1,0 +1,116 @@
+{% extends "index.html" %}
+
+{% block title %}Welcome {{ session["username"] }}!{% endblock %}
+
+{% block content %}
+<div class="background">
+    <!-- Particles animation container -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main content container centered on the page -->
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="glass-auth-box p-5 rounded" style="max-width: 600px;">
+
+            <!-- Welcome header section -->
+            <div class="auth-header mb-4 text-center">
+                <h3 class="neon-text">Welcome Back, {{ session['username'] }}! <i class="bi bi-stars"></i></h3>
+                <p class="glow-subtext">Secure Access Granted</p>
+            </div>
+
+            <!-- User statistics grid (Username, Member Since, Last Login) -->
+            <div class="user-stats-grid mb-4">
+                <div class="stat-box">
+                    <i class="bi bi-person-circle"></i>
+                    <div>
+                        <span class="stat-label">Username</span>
+                        <span class="stat-value">{{ session['username'] }}</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="bi bi-calendar-check"></i>
+                    <div>
+                        <span class="stat-label">Member Since</span>
+                        <span class="stat-value">{{ created_at }}</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="bi bi-clock-history"></i>
+                    <div>
+                        <span class="stat-label">Last Login</span>
+                        <span class="stat-value">{{ last_login }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick action links for user -->
+            <div class="quick-actions mb-4">
+                <a href="{{ url_for('artificial_intelligence') }}" class="quantum-action">
+                    <i class="bi bi-cpu"></i>
+                    AI Interface
+                </a>
+                <a href="{{ url_for('settings') }}" class="quantum-action">
+                    <i class="bi bi-gear"></i>
+                    Settings
+                </a>
+                <a href="{{ url_for('security') }}" class="quantum-action">
+                    <i class="bi bi-shield-check"></i>
+                    Security
+                </a>
+            </div>
+
+            <!-- System status indicators -->
+            <div class="system-status mb-4">
+                <div class="status-item">
+                    <span class="status-indicator active"></span>
+                    <span class="status-text">Database Connection: Stable</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-indicator active"></span>
+                    <span class="status-text">API Response: 98ms</span>
+                </div>
+            </div>
+
+            <!-- Logout form -->
+            <div class="logout-section">
+                <form method="POST" action="{{ url_for('logout') }}">
+                    <button type="submit" class="btn btn-primary starlight-btn logout-btn">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Log Out
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Displaying any flashed messages (e.g., success or error messages) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="cosmic-alert">
+            {% for category, message in messages %}
+                <div class="alert-pulse"></div>
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Loader animation for any background processing -->
+<div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+
+{% endblock %}

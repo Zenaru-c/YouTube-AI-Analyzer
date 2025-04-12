@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+
+{% block title %}Logging in...{% endblock %}
+
+{% block content %}
+<div class="background">
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="glass-auth-box p-5 rounded">
+            <!-- Header Section -->
+            <div class="auth-header mb-4 text-center">
+                <h3 class="neon-text">User Authentication</h3>
+                <p class="glow-subtext">We're so excited to see you back!</p>
+            </div>
+
+            <!-- Login Form -->
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="space-inputs">
+                    <!-- Username Input -->
+                    <div class="form-group nebula-input mb-4">
+                        <input type="text" id="login-username" class="form-control cosmic-input"
+                               placeholder="Enter your username..." name="login-username" required>
+                        <i class="bi bi-person-circle input-icon"></i>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group nebula-input mb-4">
+                        <input type="password" id="login-password" class="form-control cosmic-input"
+                               placeholder="Enter your password..." name="login-password" required>
+                        <i class="bi bi-lock-fill input-icon"></i>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="auth-button-container">
+                        <button type="submit" class="btn btn-primary btn-block starlight-btn">
+                            Authenticate <i class="bi bi-arrow-right-circle-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Registration Link -->
+            <div class="auth-footer mt-4 text-center">
+                <p class="glow-subtext">Don't have an account?</p>
+                <a href="{{ url_for('register') }}" class="quantum-link">Create New Connection</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="cosmic-alert">
+            {% for category, message in messages %}
+                <div class="alert-pulse"></div>
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+
+{% endblock %}

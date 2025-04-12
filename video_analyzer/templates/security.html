@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block title %}Security Settings{% endblock %}
+
+{% block content %}
+<div class="background">
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="glass-auth-box p-5 rounded" style="max-width: 600px;">
+            <div class="auth-header mb-4 text-center">
+                <h3 class="neon-text">Security Settings <i class="bi bi-shield-lock"></i></h3>
+                <p class="glow-subtext">Manage your account security</p>
+            </div>
+
+            <div class="delete-account-section text-center">
+                <p class="glow-subtext">Warning: This action is irreversible.</p>
+                <form action="{{ url_for('delete_account') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+                    <button type="submit" class="btn btn-danger starlight-btn delete-btn">
+                        <i class="bi bi-trash"></i> Delete Account
+                    </button>
+                </form>
+            </div>
+
+            <div class="back-to-settings">
+                <a href="{{ url_for('settings') }}" class="quantum-action">
+                    <i class="bi bi-arrow-left"></i> Back to Settings
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
